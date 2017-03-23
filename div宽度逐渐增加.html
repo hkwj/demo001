@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+<style>
+*{
+	margin:0; padding:0; list-style:none;
+}
+
+#ul1{}
+#ul1 li{width:100px;height:100px; float: left;margin:30px; background:#ccc;}
+
+</style>
+
+
+
+</head>
+<body>
+<input type="button" value="克隆li" id="btn1">
+<ul id="ul1">
+	<li>
+    	<input type="button" value="按钮">
+    </li>
+</ul>
+
+
+<script>
+var oUl=document.getElementById('ul1');
+var oBtn=document.getElementById('btn1');
+
+oUl.onclick=function(ev){
+	var oEvt=ev||event;
+	if(oEvt.srcElement.tagName=="INPUT"){
+		alert(1);
+	}
+}
+
+oBtn.onclick=function(){
+	var newLi=oUl.children[0].cloneNode(true);
+	newLi.onclick=function(ev){
+		var oEvt=ev||event;
+		oEvt.cancelBubble=true;
+	}
+	oUl.appendChild(newLi);
+}
+
+
+
+
+</script>
+</body>
+</html>
