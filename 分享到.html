@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{margin:0; padding:0; list-style:none;}
+body{
+	overflow:hidden;
+}
+#div1{
+	width:0px; height:100px; background:#ccc;
+	position:absolute; right:0; top:200px;
+}
+
+#div2{
+	width:80px; height:100px; 
+	background:#c0c;
+}
+#s{
+	position:absolute; left:-40px; 
+	top:0; height:60px;
+	width:30px; padding-left:10px;
+	background:#cc0; 
+}
+</style>
+
+</head>
+
+<body>
+<div id="div1">
+	<span id="s">分享到</span>
+	<div id="div2">腾讯 <br> 百度 <br> 新浪 <br>淘宝<br> 菜鸟教程</div>
+</div>
+
+
+
+<script>
+var timer=null;
+function move(obj,iTarget,time){
+	var start=obj.offsetWidth;
+	var dis=iTarget-start;
+	var count=Math.round(time/30);
+	var n=0;
+	clearInterval(timer);
+	timer=setInterval(function(){
+		n++;
+		obj.style.width=start+n*dis/count+'px';
+		if(n==count){
+			clearInterval(timer);
+		}
+	},30)
+}
+
+
+var oDiv=document.getElementById('div1');
+oDiv.onmouseover=function(){
+	move(oDiv,80,300);
+}
+oDiv.onmouseout=function(){
+	move(oDiv,0,300);
+}
+</script>
+</body>
+</html>
