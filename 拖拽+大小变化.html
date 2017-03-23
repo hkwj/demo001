@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{margin:0; padding:0; list-style:none;}
+#div1{
+	width:100%; height:400px; margin:0 auto;
+	position:relative; background:#999; 
+}
+#div1 ul{
+	width:20000px; position:absolute; left:0; 
+	top:110px;
+}
+#div1 li{
+	width:260px; height:179px;
+	position:relative; float:left;
+}
+#div1 li img{
+	width:260px; height:179px; opacity:1;
+}
+
+</style>
+
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+		<li><img src="" style="background:#fae;" alt=""></li>
+		<li><img src="" style="background:#f9e;" alt=""></li>
+		<li><img src="" style="background:#35e;" alt=""></li>
+		<li><img src="" style="background:#d3e;" alt=""></li>
+		<li><img src="" style="background:#75e;" alt=""></li>
+		<li><img src="" style="background:#aee;" alt=""></li>
+		<li><img src="" style="background:#ebe;" alt=""></li>
+		<li><img src="" style="background:#cce;" alt=""></li>
+	</ul>
+</div>
+
+
+
+
+<script>
+var oDiv=document.getElementById('div1');
+var oUl=oDiv.children[0];
+var aLi=oUl.children;
+var aImg=oUl.getElementsByTagName('img');
+
+oUl.onmousedown=function(ev){
+	var oEvt=ev||event;
+	var disX=oEvt.clientX-oUl.offsetLeft;
+	document.onmousemove=function(ev){
+		var oEvt=ev||event;
+		var l=oEvt.clientX-disX;
+
+		if(l>oDiv.offsetWidth/2-(0+0.5)*aLi[0].offsetWidth){
+			l=oDiv.offsetWidth/2-(0+0.5)*aLi[0].offsetWidth;
+		};
+		if(l<oDiv.offsetWidth/2-(aLi.length-1+0.5)*aLi[0].offsetWidth){
+			l=oDiv.offsetWidth/2-(aLi.length-1+0.5)*aLi[0].offsetWidth;
+		};
+		oUl.style.left=l+'px';
+		setSize();
+	};//onmousemove
+	document.onmouseup=function(){
+		document.onmouseup=document.onmousemove=null;
+	};
+	return false;
+};
+
+function setSize(){
+	for (var i = 0; i < aLi.length; i++) {
+		var dis=oDiv.offsetWidth/2-(oUl.offsetLeft+aLi[i].offsetLeft+aLi[i].offsetWidth/2);
+		dis=Math.abs(dis);
+		var scale=1-dis/800;
+		if(scale<0.5) scale=0.5;
+		aImg[i].style.width=520*scale+'px';
+		aImg[i].style.height=358*scale+'px';
+		aImg[i].style.marginLeft=-(aImg[i].offsetWidth-aLi[i].offsetWidth)/2+'px';
+		aImg[i].style.marginTop=-(aImg[i].offsetHeight-aLi[i].offsetHeight)/2+'px';
+		aLi[i].style.zIndex=parseInt(scale*10000);
+		aLi[i].style.opacity=scale;
+	}
+};
+
+setCenter(2);
+function setCenter(n){
+	oUl.style.left=oDiv.offsetWidth/2-(n+0.5)*aLi[0].offsetWidth+'px';
+}
+
+setSize();
+window.onresize=setSize;
+</script>
+</body>
+</html>
