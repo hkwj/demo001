@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+#wrap{
+	width:600px; height:280px;
+    margin:10px auto; overflow:hidden;
+	position:relative; background:_#ccc;
+}
+#wrap ul{
+	width:400px; 
+	position:absolute; left:10px;
+	top:10px; 
+}
+#wrap ul li{
+	width:400px; height:260px;
+	margin-bottom:10px;
+
+}
+#wrap ol{
+	width:180px; height:260px;
+	position:absolute;
+	left:415px; top:10px;
+}
+#wrap ol li{
+	width:180px; height:80px; margin:5px 0px;
+}
+#wrap em{
+	width:180px; height:80px; border:3px dashed #000;
+	position:absolute; left:413px; top:13px;
+	z-index:3;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<ul>
+		<li style="background:red;"></li>
+		<li style="background:green;"></li>
+		<li style="background:gray;"></li>
+	</ul>
+	<em></em>
+	<ol>
+		<li style="background:red;"></li>
+		<li style="background:green;"></li>
+		<li style="background:gray;"></li>
+	</ol>
+
+</div>
+
+<script src="jquery-1.11.1.min.js"></script>
+<script>
+$('#wrap ol li').hover(function(){
+	var _index=$(this).index();
+	$('#wrap em').stop().animate({'top':_index*85+13});
+	$('#wrap ul').stop().animate({'top':_index*-270+10})
+},function(){
+
+});
+</script>
+</body>
+</html>
