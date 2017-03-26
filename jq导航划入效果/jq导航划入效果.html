@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+.clearfix:after{
+	content:""; display:block; clear:both;
+}
+.clearfix{
+	zoom:1;
+}
+a{
+	text-decoration:none;
+	color:#333;
+	font:16px "微软雅黑";
+}
+#nav{
+	width:977px; margin:0 auto; 
+	padding:20px 0 10px 0;
+	border-bottom:4px solid #dedede;
+	position:relative;
+}
+#nav li{
+	float:left; text-align:center; 
+	width:65px;
+}
+#nav em{
+	height:4px; 
+	background:red; width:65px;
+	position:absolute; bottom:-4px;
+	left:0;
+}
+</style>
+</head>
+<body>
+<div id="nav">
+	<ul class="clearfix">
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+		<li><a href="javascript:void(0)">导航</a></li>
+	</ul>
+	<em></em>
+</div>
+
+<script src="jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('li').hover(function(){
+		$('em').stop().animate({"left":$(this).width()*$(this).index()},450);
+	},function(){
+
+	});
+});
+</script>
+</body>
+</html>
