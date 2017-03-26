@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+p{
+	color:#fff;
+}
+</style>
+</head>
+<body>
+
+	<p class="p1">script标签引入sea.js</p>
+	<p class="p1">定义两个模块 red.js 和 blue.js 放入js文件夹中 </p>
+	<p class="p1">script 标签中写入seaja.use...</p>
+
+
+
+	<p class="p2">这样就可以了</p>
+
+
+<script src='js/sea.js'></script>
+<script>
+	seajs.use(['red.js','blue.js'],function(modRed,modBlue){
+		modRed.red();
+		modBlue.blue();
+	})
+</script>
+</body>
+</html>
