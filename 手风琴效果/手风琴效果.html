@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<style>
+*{margin:0; padding:0; list-style:none;}
+#div1{
+	width:940px; height:305px; 
+	border:1px solid #000; margin:10px auto;
+	position:relative; overflow:hidden;
+}
+
+#div1 div{
+	width:840px; height:305px; position:absolute;
+	left:0; top:0; background:#ccc;
+}
+
+#div1 div span{
+	display:block;
+	width:20px; height:305px; 
+	position:absolute; left:0; top:0;
+	font-size:24px; word-wrap:break-word;
+}
+
+</style>
+
+</head>
+
+<body>
+<div id="div1">
+	<div><img src="0.jpg"  alt=""><span style="background:#c00;">0a00</span></div>
+	<div><img src="1.jpg"  alt=""><span style="background:#0fc;">1a11</span></div>
+	<div><img src="0.jpg"  alt=""><span style="background:#c0f;">222</span></div>
+	<div><img src="1.jpg"  alt=""><span style="background:#aff;">333</span></div>
+	<div><img src="0.jpg"  alt=""><span style="background:#e8f;">444</span></div>
+	<div><img src="1.jpg"  alt=""><span style="background:#a00;">555</span></div>
+</div>
+
+
+
+<script type="text/javascript" src="move.js"></script>
+<script>
+var oDiv=document.getElementById('div1');
+var aDiv=oDiv.children;
+for (var i = 0; i < aDiv.length; i++) {
+	aDiv[i].style.left=i*20+'px';
+};
+
+for (var i = 0; i < aDiv.length; i++) {
+	(function(index){
+		aDiv[i].onmouseover=function(){
+			for (var i = 0; i < aDiv.length; i++) {
+				if(i<=index){
+					move(aDiv[i],{left:i*20},{time:700});
+				} else if(i>index){
+					move(aDiv[i],{left:840+(i-1)*20},{time:700})
+				}
+			}
+		}
+	})(i);//闭包
+}
+
+</script>
+</body>
+</html>
