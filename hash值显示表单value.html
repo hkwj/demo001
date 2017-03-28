@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<style>
+*{margin: 0; padding: 0; list-style: none;}
+
+</style>
+
+</head>
+
+<body>
+<form action="">
+	<input type="text" name="a"/>
+	<input type="text" name="b"/>
+	<input type="text" name="c"/>
+	<input type="text" name="d"/>
+	<input type="submit" id="btn">
+</form>
+
+
+
+
+<script>
+var aIpt=document.getElementsByTagName('input');
+var oSub=document.getElementById('btn');
+var json={};
+var arr=[];
+oSub.onclick=function(){
+	
+	for (var i = 0; i < aIpt.length; i++) {
+		if(aIpt.name){
+			json[aIpt[i].name]=aIpt[i].vlaue;
+		}
+	}
+
+	
+	for(var key in json){
+		arr.push(key+'='+json[key]);
+	}
+};
+
+
+console.log(json);
+window.location.hash='#'+arr.join('&');
+
+</script>
+</body>
+</html>
