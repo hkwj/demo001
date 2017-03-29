@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<style>
+*{margin: 0; padding: 0; list-style: none;}
+input.active{background:#888;}
+div div{
+	width:200px; height:100px; border:1px solid #000;
+	text-align:center; line-height:100px;
+	display:none;
+}
+div div.cur{
+	display:block;
+}
+</style>
+
+</head>
+
+<body>
+<div id="div1">
+	<input type="button" value="aaa" class="active">
+	<input type="button" value="bbb">
+	<input type="button" value="ccc">
+	<div class="cur">aaa</div>
+	<div>bbb</div>
+	<div>ccc</div>
+</div>
+
+
+<script>
+function setCookie(name,value,timeout){
+	var d=new Date();
+	d.setDate(d.getDate()+timeout);
+	document.cookie=name+'='+value+';expires'+d;
+};
+function getCookie(name){
+	var arr=document.cookie.split('; ');
+	for (var i = 0; i < arr.length; i++) {
+		var arr2=arr[i].split('=');
+		if(arr2[0]==name){
+			return arr2[1];
+		}
+	}
+	return '';
+};
+
+function removeCookie(name){
+	setCookie(name,'',-1);
+};
+
+var oDiv=document.getElementById('div1');
+var aHead=oDiv.getElementsByTagName('input');
+var aContent=oDiv.getElementsByTagName('div');
+var now=0;
+if(getCookie('tab')){
+	now=getCookie('tab');
+	tab();
+}
+
+for (var i = 0; i < aHead.length; i++) {
+	(function(index){
+		aHead[i].onclick=function(){
+			now=index;
+			tab();
+		}
+	})(i)
+}
+
+function tab(){
+	for (var i = 0; i < aHead.length; i++) {
+		aHead[i].className='';
+		aContent[i].className='';
+	} 
+	aHead[now].className='active';
+	aContent[now].className='cur';
+	setCookie('tab',now,1);
+};
+
+
+</script>
+</body>
+</html>
