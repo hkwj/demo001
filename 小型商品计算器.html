@@ -44,7 +44,7 @@ $(document).ready(function(){
 				}
 			});
 			bigPrice.sort(function(a,b){return b-a});
-			$('#exp').html(bigPrice[0]);
+			bigPrice[0] ? $('#exp').html(bigPrice[0]):$('#exp').html('');
 			bigPrice=[];
 		};
 	})
@@ -134,7 +134,7 @@ $(document).ready(function(){
 		</li>
 	</ul>
 	<p>
-		商品合计共：<strong id="num"></strong>件，共花费了：<strong id="totlePrice"></strong>元<br />
+		商品合计共：<strong id="num">0</strong>件，共花费了：<strong id="totlePrice">0</strong>元<br />
 		其中最贵的商品单价是：<strong id="exp"></strong>元
 	</p>
 </body>
