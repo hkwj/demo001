@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+
+<style>
+#div1{
+	width:100px; height:100px; background:#ccc;
+	position:absolute; top:50px; left:30px;
+	z-index:2;
+}
+#position{
+	width:100px; height:100px; 
+	border:1px dashed red;
+	position:absolute; top:500px; left:900px;
+}
+</style>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById('btn1');
+	var oDiv=document.getElementById('div1');
+	var oPos=document.getElementById('position');
+	oBtn.onclick=function(){
+		doMove(oDiv,'left',10,900,function(){
+			doMove(oDiv,'top',14,500,function(){
+				setTimeout(function(){
+					oDiv.style.left='30px';
+					oDiv.style.top='50px';
+				},800);
+			});
+		})
+	};
+
+	function doMove(obj,attr,dir,target,endFn){
+		dir=parseInt(getStyle(obj,attr))<target?dir:-dir;
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			var speed=parseInt(getStyle(obj,attr))+dir;
+			if(speed>target && dir>0 || speed<target && dir<0){
+				speed=target;
+			}
+			obj.style[attr]=speed+'px';
+			if(speed==target){
+				clearInterval(obj.timer);
+				endFn && endFn();
+			};
+		},30);
+	};
+
+	function getStyle(obj,attr){
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
+	};
+}
+
+</script>
+</head>
+<body>
+<input type="button" value="go" id="btn1">
+<div id="div1">到达指定位置后 800ms复原</div>
+<div id="position">指定位置</div>
+	
+</body>
+</html> 
